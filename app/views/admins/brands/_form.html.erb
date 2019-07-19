@@ -1,15 +1,69 @@
+
+<% @i = 1 %>
 <%= form_for [:admins,@brand] , html: { multipart: true },remote: true ,authenticity_token: true do |f| %>
 <p style="padding:2px">Name</p>
-<%= f.text_field :name, class: 'form-control',placeholder: "Product Name",minlength:"3",required:"required"%>
+<%= f.text_field :name, class: 'form-control',placeholder: "Product Name",minlength:"3"%>
+<label>Category</label>
 <div class="select">
-  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt =>  'Chooses Category'},{:class=>'form-control'} ) %>
-  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt =>  'Chooses Category'},{:class=>'form-control'} ) %>
+	<%= f.collection_select :category_ids, Category.all, :id, :name, {include_blank: 'Chooses Category'}, {:name => 'category_ids[]',:class=>'form-control'} %>
+	<a  data-options='{"name":"John"}'  class=" remove btn btn-danger mt-1">Remove</a>
 </div>
-<button>Remove</button>
 <hr>
-<button id="add-category">Add</button>
-<div class="form-actions">
-    <%= f.submit  class: 'btn btn-success btn-block' %>
-</div>
+<a id="add"  >Add</a>
+
+
+<div class="form-actions mt-5">
+	<%= f.submit  class: 'btn btn-success btn-block' %>
 </div>
 <% end %>
+
+
+<script type="text/javascript">
+// function removeSelect(){
+//  var buttons = document.getElementsByTagName("a");
+//  var buttonsCount = buttons.length;
+//  for (var i = buttonsCount - 1; i >= 0; i--) {
+//      buttons[i].onclick = function(e) {
+//          // var x = JSON.parse(this.getAttribute('data-options'));
+//          // console.log(x.name);
+//          console.log(this.parentElement);
+//          this.parentElement.remove();
+//              };
+//  }
+// }
+
+$(document).on('turbolinks:load', function() {
+
+
+    $("#add").click(function() {
+        var x = "";
+        var option = ""
+        <%  Category.all.each do |v| %>
+        x = "<%=v.inspect%>".replace(/&quot;/g, '').replace(/&gt;/g, '').replace(/#&lt;Category/g, '').split(",");
+        option = option + "<option value=" + x[0].split(":")[1] + ">" + x[1].split(":")[1] + "</option>"
+        <% end %>
+        $("<div><select name='category_ids[]' class='form-control' id='brand_category_ids'><option value=>Chooses Category</option>" + option + "</select><a data-options='{'name':'John'}'  class='remove btn btn-danger mt-1'>Remove</a></br></div>").insertBefore($("#add"));
+    });
+});
+
+
+
+$(document).on('click', '.remove', function(e) {
+    var x = $(this).parent('div');
+    $.confirm({
+        title: 'Confirm!',
+        content: 'Simple confirm!',
+        buttons: {
+            confirm: function() {
+                x.remove();
+            },
+            cancel: function() {
+
+            }
+        }
+    });
+
+
+
+});
+</script>
