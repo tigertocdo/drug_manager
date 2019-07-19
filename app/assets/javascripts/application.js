@@ -19,6 +19,9 @@
 //= require custom-radio-min
 //= require custom-radio
 //= require owl.carousel.min
+//= require jquery-confirm
+//= require jquery-confirm.min
+//= require data-confirm-modal
 //= require activestorage
 //= require turbolinks
 //= require_tree .
