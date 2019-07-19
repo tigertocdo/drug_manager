@@ -1,0 +1,101 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require font-awesome
+*= require_self
+*/
+@import "bootstrap";
+@import "font-awesome";
+@import "home";
+@import "nav";
+@import "footer";
+@import 'owl.carousel';
+@import "products";
+@import "swiper";
+@import "nav_admins";
+@import "users";
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: asset-url('Montserrat/otf/Montserrat-Regular.otf') format('truetype');
+  // font-family: 'Montserrat';
+  // src: asset-url('Montserrat/otf/Montserrat-Bold.otf') format('truetype');
+  // font-family: 'Montserrat';
+  // src: asset-url('Montserrat/otf/Montserrat-Italic.otf') format('truetype');
+  // font-family: 'Montserrat';
+  // src: asset-url('Montserrat/otf/Montserrat-Medium.otf') format('truetype');
+  // font-family: 'Montserrat';
+  // src: asset-url('Montserrat/otf/Montserrat-SemiBold.otf') format('truetype');
+}
+
+body {
+  // background: #f8f9fa !important;
+  font-family: 'Montserrat-Regular', sans-serif;
+  font-weight: 600;
+    min-height: 100vh;
+
+}
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.image-show,
+.image-show-main {
+  position: relative;
+  height: 411px;
+  // width: 500px;
+}
+
+.image-show-main {
+  background: #f2f2f29e;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.gallery-top {
+  height: 80%;
+  width: 100%;
+}
+
+.gallery-thumbs {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.gallery-thumbs .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}

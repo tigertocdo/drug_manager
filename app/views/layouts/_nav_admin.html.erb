@@ -1,0 +1,20 @@
+<div class="header">
+	<h2 class="logo">
+	Manager Drug
+	</h2>
+	<input type="checkbox" id="chk">
+	<label for="chk" class="show-menu-btn">
+		<i class="fa fa-ellipsis-h"></i>
+	</label>
+	<ul class="menu">
+		<%= link_to "Home",admins_path  %>
+		<a href="">Brand</a>
+		<a href="">Category</a>
+		<a href="">Product</a>
+		<a href="">Task List</a>
+		<%= link_to('Logout', destroy_user_session_path, method: :delete) %></span>
+		<label for="chk" class="hide-menu-btn">
+			<i class="fa fa-times"></i>
+		</label>
+	</ul>
+</div>

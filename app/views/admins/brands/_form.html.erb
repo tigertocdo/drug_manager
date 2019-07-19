@@ -1,0 +1,15 @@
+<%= form_for [:admins,@brand] , html: { multipart: true },remote: true ,authenticity_token: true do |f| %>
+<p style="padding:2px">Name</p>
+<%= f.text_field :name, class: 'form-control',placeholder: "Product Name",minlength:"3",required:"required"%>
+<div class="select">
+  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt =>  'Chooses Category'},{:class=>'form-control'} ) %>
+  <%= f.collection_select(:category_ids, Category.all, :id, :name, {:prompt =>  'Chooses Category'},{:class=>'form-control'} ) %>
+</div>
+<button>Remove</button>
+<hr>
+<button id="add-category">Add</button>
+<div class="form-actions">
+    <%= f.submit  class: 'btn btn-success btn-block' %>
+</div>
+</div>
+<% end %>

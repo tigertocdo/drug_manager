@@ -1,0 +1,123 @@
+img.logo-image {
+  height: 40px;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.navbar-nav li:hover div.dropdown-menu {
+  display: block;
+}
+
+ul.navbar-nav {
+  font-size: 22px;
+}
+
+// .navbar-nav {
+  //    width: 100%;
+  //    text-align: center;
+
+  //    > li {
+    //      float: none;
+    //      display: inline-block;
+    //
+//     //
+//   }
+
+//   //   //
+//   //
+// }
+
+// respon center
+
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+  background-color: #76838e;
+  border-radius: 5%;
+}
+
+.navbar-default .navbar-nav>.active>a:hover {
+  background: #a8a7a7;
+  color: #343a405c;
+}
+
+nav .navbar-nav li a {
+  color: #f8f9fa !important;
+}
+
+.navbar-default {
+  background-color: #6c757d !important;
+  border-color: green;
+}
+
+.navbar .nav-item {
+  padding: 0px 1px 0px 0px;
+}
+
+.navbar {
+  padding: 0;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  text-decoration: none;
+  background: #a8a7a7;
+  color: #343a405c;
+}
+
+.navbar-nav .dropdown-menu {
+  background-color: #76838e;
+}
+
+// dropdown-sub menu
+ul.dropdown-submenu:hover > ul.dropdown-menu {
+  display: block;
+}
+
+li.dropdown-submenu:hover > ul.dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+  top: 30%;
+  left: 100%;
+  margin-top: -6px;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+  text-decoration: underline;
+  transform: rotate(-90deg);
+}
+
+@media (max-width:990px) {
+  .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+
+  .navbar-default .navbar-nav>.active>a,
+  .navbar-default .navbar-nav>.active>a:hover,
+  .navbar-default .navbar-nav>.active>a:focus {
+    background-color: #6c757d;
+    border-radius: 0;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    float: none;
+  }
+
+}
