@@ -29,13 +29,13 @@
 				<% if product.options.count != 0 %>
 				<button class="btn btn-warning" id="btn-show-child-table" value="<%= product.id %>">Xem</button>
 				<div class="child-table">
-					<div  id="dialog-message<%= product.id %>" title="Tùy chọn trong sản phẩm <%= %>">
-						<table>
+					<div style="width: 400px; font-size: 9px; margin: 0 auto;"  id="dialog-message<%= product.id %>" title="Tùy chọn trong sản phẩm <%= %>">
+						<table border="2px">
 							<thead>
 								<tr>
 									<th scope="col">Tùy Chọn</th>
-									<th scope="col">Thành Phần</th>
-									<th scope="col">Quy Cách</th>
+									<th style="width: 100px;" scope="col">Thành Phần</th>
+									<th style="width: 100px;" scope="col">Quy Cách</th>
 									<th scope="col">Số Lượng</th>
 									<th scope="col">Giá</th>
 								</tr>
@@ -44,8 +44,8 @@
 								<tr>
 									<% product.options.each do |option| %>
 									<td><%= option.option_name %></td>
-									<td><%= option.ingredient %></td>
-									<td><%= option.pack %></td>
+									<td style="width: 100px;"><%= option.ingredient %></td>
+									<td style="width: 100px;"><%= option.pack %></td>
 									<td><%= option.quantity %></td>
 									<td><%= option.price %></td>
 									<% end %>
