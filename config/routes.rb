@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   namespace :admins do
     get 'brands/index'
     get 'brands/new'
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
   end
    namespace :admins do
          get '/', to:'managers#home'
-         resource :brands
+      resources :brands,except: [:destroy,:show]
+      resources :categories,except: [:destroy,:show]
+      resources :products
+
    end
 end

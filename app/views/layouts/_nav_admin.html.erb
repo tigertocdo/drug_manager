@@ -1,17 +1,17 @@
 <div class="header">
 	<h2 class="logo">
-	Manager Drug
+	Drug Manager 
 	</h2>
 	<input type="checkbox" id="chk">
 	<label for="chk" class="show-menu-btn">
 		<i class="fa fa-ellipsis-h"></i>
 	</label>
 	<ul class="menu">
-		<%= link_to "Home",admins_path  %>
-		<a href="">Brand</a>
-		<a href="">Category</a>
-		<a href="">Product</a>
-		<a href="">Task List</a>
+		<%= link_to "Trang Chủ",admins_path  %>
+		<%= link_to "Thương Hiệu",admins_brands_path  %>
+		<%= link_to "Loại Thuốc",admins_categories_path  %>
+		<%= link_to "Sản Phẩm",admins_products_path  %>
+		<a href="">Giao Hàng(built in funture)</a>
 		<%= link_to('Logout', destroy_user_session_path, method: :delete) %></span>
 		<label for="chk" class="hide-menu-btn">
 			<i class="fa fa-times"></i>

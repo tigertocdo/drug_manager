@@ -1,0 +1,125 @@
+<!--          <button id="myButtonControlID">Export Table data into Excel</button>
+-->
+<!-- <div id="divTableDataHolder"> -->
+<div class="clearfix"></div>
+<%= link_to "Tạo mới",new_admins_product_path,class: "btn btn-primary"  %>
+<table  id="example" class="table table-striped table-bordered" style="width:100%">
+	<thead >
+		<tr class="text-center">
+			<th scope="col">STT</th>
+			<th scope="col">Hình Ảnh</th>
+			<th scope="col">Tên Sản Phẩm</th>
+			<th scope="col">Thương Hiệu</th>
+			<th scope="col">Loại Sản Phẩm</th>
+			<th scope="col">Tùy chọn</th>
+			<th scope="col" style="width:50px">Cập Nhật</th>
+			<th scope="col" style="width:50px">Trạng Thái</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% Product.all.each do |product| %>
+		<tr class="text-center">
+			<td scope="row"><%= @stt = @stt + 1 %></td>
+			<td > <%= image_tag  product.image.attached? == false ? "" : product.image , style: 'width: 320px;,height: 320px;' %>
+			</td>
+			<td><%= product.name %></td>
+			<td><%= product.brand_category.brand.name %></td>
+			<td><%= product.brand_category.category.name %></td>
+			<td >
+				<% if product.options.count != 0 %>
+				<button class="btn btn-warning" id="btn-show-child-table" value="<%= product.id %>">Xem</button>
+				<div class="child-table">
+					<div  id="dialog-message<%= product.id %>" title="Tùy chọn trong sản phẩm <%= %>">
+						<table>
+							<thead>
+								<tr>
+									<th scope="col">Tùy Chọn</th>
+									<th scope="col">Thành Phần</th>
+									<th scope="col">Quy Cách</th>
+									<th scope="col">Số Lượng</th>
+									<th scope="col">Giá</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<% product.options.each do |option| %>
+									<td><%= option.option_name %></td>
+									<td><%= option.ingredient %></td>
+									<td><%= option.pack %></td>
+									<td><%= option.quantity %></td>
+									<td><%= option.price %></td>
+									<% end %>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to '', edit_admins_product_path(product),class: "text-center btn btn-warning fa fa-edit" %>
+			</td>
+			<td >
+				<select  class="form-control" id="selectStatus">
+					<option value="2" data-id="1">1</option>
+					<option value="2" data-id="1">2</option>
+					<option value="2" data-id="1">3</option>
+					<option value="2" data-id="1">4</option>
+					<option value="2" data-id="1">5</option>
+				</select>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<!-- </div> -->
+<script type="text/javascript">
+
+$('#selectStatus').on("change",function(){
+    var dataid = $("#selectStatus option:selected").attr('data-id');
+    alert(dataid);
+});
+
+
+
+
+	$(document).ready(function() {
+	dataTable =  $('#example').DataTable({
+	dom: 'lBfrtip',
+	// buttons: [
+	// 'copy', 'csv', 'excel', 'pdf', 'print','colvis'
+	// ]
+			buttons: [
+		{
+		extend: 'print',
+		text: 'Print',
+		exportOptions: {
+		stripHtml: false,
+		columns: [0,1,2,3,4,5],
+		}, customize: function (win) {
+$(".hidden-child-table").css('display','block');
+		},
+		},
+		'colvis'
+		]
+			});
+		$( "#btn-show-child-table" ).click(function() {
+			var id =  $(this).val();
+			// $("#dialog-message"+id).removeClass("d-none");
+				$(function () {
+			$("#dialog-message"+id).dialog({
+			modal: true,
+			buttons: {
+			Ok: function () {
+			$(this).dialog("close");
+			}
+			}
+			});
+			});
+});
+			});
+		$("[id$=myButtonControlID]").click(function (e) {
+		window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('div[id$=divTableDataHolder]').html()));
+		e.preventDefault();
+		});
+</script>

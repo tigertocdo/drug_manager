@@ -1,23 +1,37 @@
-
-<% @i = 1 %>
-<%= form_for [:admins,@brand] , html: { multipart: true },remote: true ,authenticity_token: true do |f| %>
-<p style="padding:2px">Name</p>
-<%= f.text_field :name, class: 'form-control',placeholder: "Product Name",minlength:"3"%>
-<label>Category</label>
-<div class="select">
-	<%= f.collection_select :category_ids, Category.all, :id, :name, {include_blank: 'Chooses Category'}, {:name => 'category_ids[]',:class=>'form-control'} %>
-	<a  data-options='{"name":"John"}'  class=" remove btn btn-danger mt-1">Remove</a>
+<%= render 'layouts/messages' %>
+<div id="errors" class="container">
+    <br>
+    <%= render "users/shared/error_messages", resource: @brand %>
 </div>
-<hr>
-<a id="add"  >Add</a>
-
-
-<div class="form-actions mt-5">
-	<%= f.submit  class: 'btn btn-success btn-block' %>
+<div class="container">
+    <div class="form-input">
+        <h1 class="mt-5" align="center"><%= @brand.new_record? == true ? 'Tạo Mới' : 'Cập Nhật' %> Thương Hiệu</h1>
+        <%= form_for [:admins,@brand] , html: { multipart: true },remote: true ,authenticity_token: true do |f| %>
+        <br>
+        <label>Tên thương hiệu</label>
+        <%= f.text_field :name, class: 'form-control mb-1',placeholder: "nhập tên thương hiệu",minlength:"3"%>
+        <label>Loại Sản Phẩm Thương Hiệu Đang Kinh Doanh</label>
+        <br>
+        <% if  @brand.new_record?  %>
+        <div class="select">
+            <%= f.collection_select :category_ids, Category.all, :id, :name, {include_blank: 'Chooses Category'}, {id:"brand_category_ids" ,:name => 'category_ids[]',:class=>'form-control'} %>
+            <a    class=" remove btn btn-danger mt-1 text-white"><i class="fa fa-minus"></i> Xóa</a>
+        </div>
+        <% else %>
+        <% @brand.categories.each do |v|%>
+        <div class="select">
+            <%= f.collection_select :category_ids, Category.all, :id, :name, {prompt: true, selected: v.id}, {id:"brand_category_ids" ,:name => 'category_ids[]',:class=>'form-control'} %>
+            <a  class=" remove btn btn-danger mt-1 text-white"  ><i class="fa fa-minus"></i> Xóa</a>
+        </div>
+        <% end %>
+        <% end %>
+        <a id="add" class="btn btn-primary text-white mt-1"  ><i class="fa fa-plus"></i> Thêm nữa</a>
+        <div class="form-actions mt-3">
+            <%= f.submit  @brand.new_record? == true ? 'Tạo' : 'Cập nhật',class: 'btn btn-success btn-block' %>
+        </div>
+        <% end %>
+    </div>
 </div>
-<% end %>
-
-
 <script type="text/javascript">
 // function removeSelect(){
 //  var buttons = document.getElementsByTagName("a");
@@ -31,39 +45,41 @@
 //              };
 //  }
 // }
-
 $(document).on('turbolinks:load', function() {
+$("#add").click(function() {
 
-
-    $("#add").click(function() {
-        var x = "";
-        var option = ""
-        <%  Category.all.each do |v| %>
-        x = "<%=v.inspect%>".replace(/&quot;/g, '').replace(/&gt;/g, '').replace(/#&lt;Category/g, '').split(",");
-        option = option + "<option value=" + x[0].split(":")[1] + ">" + x[1].split(":")[1] + "</option>"
-        <% end %>
-        $("<div><select name='category_ids[]' class='form-control' id='brand_category_ids'><option value=>Chooses Category</option>" + option + "</select><a data-options='{'name':'John'}'  class='remove btn btn-danger mt-1'>Remove</a></br></div>").insertBefore($("#add"));
-    });
+$.confirm({
+title: 'Thông Báo!',
+content: "Bạn chắc chắn hành động này?",
+buttons: {
+confirm: function() {
+var x = "";
+var option = ""
+<%  Category.all.each do |v| %>
+x = "<%=v.inspect%>".replace(/&quot;/g, '').replace(/&gt;/g, '').replace(/#&lt;Category/g, '').split(",");
+option = option + "<option value=" + x[0].split(":")[1] + ">" + x[1].split(":")[1] + "</option>"
+<% end %>
+$("<div><select name='category_ids[]' class='form-control' id='brand_category_ids'><option value=>Chooses Category</option>" + option + "</select><a data-options='{'name':'John'}'  class='remove btn btn-danger mt-1 text-white'><i class='fa fa-minus'></i> Xóa</a></br></div>").insertBefore($("#add"));
+},
+cancel: function() {
+}
+}
 });
-
-
-
+});
+});
 $(document).on('click', '.remove', function(e) {
-    var x = $(this).parent('div');
-    $.confirm({
-        title: 'Confirm!',
-        content: 'Simple confirm!',
-        buttons: {
-            confirm: function() {
-                x.remove();
-            },
-            cancel: function() {
-
-            }
-        }
-    });
-
-
-
+var x = $(this).parent('div');
+var y = $(this).data( "lastValue" );
+$.confirm({
+title: 'Thông Báo!',
+content: "Bạn chắc chắn hành động này?",
+buttons: {
+confirm: function() {
+x.remove();
+},
+cancel: function() {
+}
+}
+});
 });
 </script>
