@@ -43,3 +43,35 @@ label.selected {
 .show-size-item {
     text-align: center;
 }
+img#a {
+    height: 320px;
+    width: 320px;
+}
+input#file-input {
+    display: none;
+}
+.col-lg-4.option {
+    height: 600px;
+    overflow: overlay;
+}
+.image-upload {
+    text-align: center;
+}
+img#a {
+    height: 320px;
+    width: 320px;
+    background: linear-gradient(120deg, #7ca3a3, #a9a9a9, #01a3a4);
+}
+i.fa.fa-image {
+    position: absolute;
+    left: 37%;
+    top: 116px;
+    font-size: 6em;
+    display: inline-block;
+}
+.changeavt {
+    position: relative;
+}
+
+
+

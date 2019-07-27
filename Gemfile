@@ -46,6 +46,12 @@ gem 'mini_magick'
 gem 'active_storage_validations'
 gem 'fog-aws'
 gem 'data-confirm-modal'
+
+gem 'cloudinary', require: false
+gem 'activestorage-cloudinary-service'
+gem 'jquery-ui-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

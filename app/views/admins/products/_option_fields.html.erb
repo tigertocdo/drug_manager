@@ -1,0 +1,17 @@
+<div class="nested-fields">
+	<label>Tùy chọn về tên</label>
+	<%= f.text_field :option_name , class: "form-control", placeholder:"tên",required:"required"%>
+	<label>Thành Phần</label>
+	<%= f.text_area :ingredient , class: "form-control", placeholder:"nhập thành phần",required:"required"%>
+	<label>Quy Cách</label>
+	<%= f.text_area :pack , class: "form-control", placeholder:"nhập quy cách",required:"required"%>
+	<label>Số Lượng</label>
+	<%= f.text_field :quantity ,type: "number", class: "form-control", placeholder:"nhập số lượng",required:"required"%>
+	<label>Giá</label>
+	<%= f.text_field :price ,type: "number", class: "form-control", placeholder:"nhập giá",required:"required"%>
+	<label>Chọn xóa</label>
+	<%= f.check_box :_destroy  %>
+	<br>
+	<%= link_to_remove_association "Xóa", f, class: "btn btn-danger " %>
+	<hr>
+</div>

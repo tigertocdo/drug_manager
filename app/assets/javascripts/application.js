@@ -22,6 +22,17 @@
 //= require jquery-confirm
 //= require jquery-confirm.min
 //= require data-confirm-modal
+//= require jquery-ui
+//= require jquery-ui/widgets/dialog
+//= require cocoon
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+var dataTable = null
+document.addEventListener("turbolinks:before-cache", function() {
+  if (dataTable !== null) {
+   dataTable.destroy()
+   dataTable = null
+
+  }
+})

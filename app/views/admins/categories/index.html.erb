@@ -1,28 +1,18 @@
-<div class="clearfix"></div>
-<%= link_to "Tạo mới",new_admins_brand_path,class: "btn btn-primary"  %>
+<%= link_to "Tạo mới",new_admins_category_path,class: "btn btn-primary"  %>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
 	<thead>
 		<tr class="text-center">
-			<th  >Tên Thương Hiệu</th>
-			<th>Tên Loại Sản Phẩm</th>
+			<th  >Tên Loại Sản Phẩm</th>
 			<th  style="width:50px">Cập Nhật</th>
-			<th style="width:50px">Trạng Thái</th>
+			<th style="width:50px">Trạng THái</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% Brand.all.each do |brand| %>
+		<% Category.all.each do |category| %>
 		<tr class="text-center">
-			<td><%= brand.name %></td>
+			<td><%= category.name %></td>
 			<td>
-				<% if brand.categories.count != 0 %>
-				<% brand.categories.limit(brand.categories.count - 1).each do |category| %>
-				<%= category.name %><span>,</span>
-				<% end %>
-				<%= brand.categories.last.name %>
-				<% end %>
-			</td>
-			<td>
-				<%= link_to '', edit_admins_brand_path(brand),class: "text-center btn btn-warning fa fa-edit" %>
+				<%= link_to '', edit_admins_category_path(category),class: "text-center btn btn-warning fa fa-edit" %>
 			</td>
 			<td >
 				<div  class="dropdown">

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  option_name: MyText
+  ingredient: MyText
+  pack: MyText
+  quantity: 1
+  price: 9.99
+  product: one
+
+two:
+  option_name: MyText
+  ingredient: MyText
+  pack: MyText
+  quantity: 1
+  price: 9.99
+  product: two
